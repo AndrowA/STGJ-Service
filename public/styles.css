@@ -1,0 +1,106 @@
+/* Navbar*/
+
+.navbar button{
+    background-color: transparent;
+    border: 0ch;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+/* Login Page */
+
+.login-card{
+    margin: 15% 25%;
+    padding: 20px;
+    border: 50%;
+}
+
+.login-card h1{
+    padding: 2%;
+}
+
+.login-card p{
+    padding: 7%;
+}
+
+.login-input{
+    padding: 7px 0;
+    width: 100%;
+}
+
+.login-input-box{
+    padding: 20px;
+}
+
+.login-checkBox{
+    text-align: left;
+    padding: 8px 0 0 3px;
+    font-weight: lighter;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Registration Page */
+
+.registration{
+    text-align: center;
+}
+
+/* Main Page */
+.main-row{
+    padding: 15% 0;
+}
+
+.main-list{
+    padding: 20px 20px;
+    text-align: left;
+    font-size:25px ;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.reading-list{
+    padding-left:50px
+
+}
+
+.main-boxes h1{
+    padding-top: 20px;
+}
+
+.main-boxes{
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 25px;
+}
+
+/* Availabality Page */
+
+.card-piece{
+    padding: 15% 5% 5% 5%;
+ 
+}
+
+.card-piece img{
+    height: 300px;
+}
+
+.card-piece-bottom{
+    padding: 2% 5% 15% 7%;
+ 
+}
+
+.card-piece-bottom img{
+    height: 300px;
+ 
+}
+
+.registration-button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+.btn:focus {
+outline: none;
+box-shadow: none;
+}
