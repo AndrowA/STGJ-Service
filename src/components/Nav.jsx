@@ -7,7 +7,7 @@ function Nav(props){
     return(
         <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
             <div className="container-fluid">
-                <Link to="/home">
+                <Link to="/schedule">
                     <button className="navbar-brand" href="#">STGJ Service </button>
                 </Link> 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
