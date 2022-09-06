@@ -61,16 +61,6 @@ function App() {
     setUser(currentUser);
   });
 
-  const forgot = async (forgotenEmail) => {
-    try{
-      console.log(forgotenEmail)
-      return sendPasswordResetEmail(auth, forgotenEmail)
-      
-    }catch(error){
-        console.log(error.message)
-    }
-  }
-
   const signIn = async (loginEmail, loginPassword) => {
     try{
         const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -96,7 +86,7 @@ function App() {
           <Route path="/" element={<Main user = {user} userList={userList} orderList={orderList}/>}/>
         </Route>
         <Route path="/register" element={<Register error={error}/>}/>
-        <Route path="/forgot" element={<Forgot forgot={forgot}/>}/>
+        <Route path="/forgot" element={<Forgot error={error}/>}/>
       </Routes>
     </Router>
   );

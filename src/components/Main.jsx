@@ -20,11 +20,10 @@ function Main(props){
     const [youths, setYouths] = useState([])
     const [adults, setAdults] = useState([])
 
-    const [totalAltar, setTotalAltar] = useState(0)
-    const [totalReading, setTotalReading] = useState(0)
-
     const [read, setRead] = useState([])
     const [served, setServed] = useState([])
+    const [readPhones, setReadPhones] = useState([])
+    const [servedPhones, setServedPhones] = useState([])
 
    useEffect(() => {
 
@@ -65,6 +64,14 @@ function Main(props){
       setServed(props.orderList.map((doc) => {
         return doc.served
       }))
+      
+      setReadPhones(props.orderList.map((doc) => {
+        return doc.readPhones
+      }))
+
+      setServedPhones(props.orderList.map((doc) => {
+        return doc.servedPhones
+      }))
 
    },[props.orderList])
 
@@ -101,11 +108,11 @@ function Main(props){
       <Container className="text-center">
           <Row className="main-row">
             <Col>
-              <Assignment name = "Altar" first={adults} second={youths} third={AASundaySchool} fourth={AASundaySchool} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetAltar={resetAltar}/>
+              <Assignment name = "Altar" first={adults} second={youths} third={AASundaySchool} fourth={AASundaySchool} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetAltar={resetAltar} readPhones={readPhones} servedPhones={servedPhones}/>
               {props.user.email === process.env.REACT_APP_ADMIN_EMAIL?<Button onClick={()=>resetAltar()} class="btn btn-primary" type="button">Reset Altar</Button>:null}
             </Col>
             <Col>
-              <Assignment name = "Readings" first={paulineList} second={catholicList} third={actsList} fourth={gospelList} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetReading={resetReadings}/>
+              <Assignment name = "Readings" first={paulineList} second={catholicList} third={actsList} fourth={gospelList} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetReading={resetReadings} readPhones={readPhones} servedPhones={servedPhones}/>
               {props.user.email === process.env.REACT_APP_ADMIN_EMAIL?<Button onClick={()=>resetReadings()} class="btn btn-primary" type="button">Reset Readings</Button>:null}
             </Col>
           </Row>

@@ -14,7 +14,9 @@ function Login(props){
     return(
        <div className="login-card">
             <Form className="text-center">
-                <h1>Login</h1>
+                <img className="login-image" src="https://i.etsystatic.com/23754934/r/il/7bd6be/2845622712/il_1588xN.2845622712_1zh0.jpg" alt="" />
+                <h2>Archangel Michael Deaconship Service</h2>
+                <h2>Login</h2>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <div className="login-input">
                         <Form.Control  type="email" placeholder="Enter email" value={email} onChange={(e) => {

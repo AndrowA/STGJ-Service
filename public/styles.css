@@ -11,8 +11,14 @@ a:hover{
 
 /* Login Page */
 
+.login-image{
+    height: 200px;
+    width: 300px;
+    padding-bottom: 30px;
+}
+
 .login-card{
-    margin: 15% 25%;
+    margin: 5% 25%;
     padding: 20px;
     border: 50%;
 }

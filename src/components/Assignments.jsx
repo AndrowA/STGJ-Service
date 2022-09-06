@@ -9,6 +9,7 @@ import {db} from "../firebaseConfig"
 function Assignment(props){
 
     const order = doc(db, "order", "allOrderLists");
+    const readings = ["Pauline", "Catholic Epistle", "Acts", "Gospel"]
 
     var first = 0
     var second = 0
@@ -24,6 +25,11 @@ function Assignment(props){
                     served: arrayRemove(person)
                 });
             })
+            props.orderList[0].servedPhones.forEach((phone) => {
+                updateDoc(order, {
+                    servedPhones: arrayRemove(phone)
+                });
+            })
             // if notRead[0] is in in props first put his name, remove it from the notRead 
             
             props.orderList[0].notServed.forEach((person) => {
@@ -31,13 +37,18 @@ function Assignment(props){
                     updateDoc(order, {
                         notServed: arrayRemove(person)
                     });
+                    
                     updateDoc(order, {
                         served: arrayUnion(person)
                     });
+
+                    updateDoc(order, {
+                        servedPhones: arrayUnion(props.first.find((notServedPerson) => {return notServedPerson.name === person}).phoneNumber)
+                    });
                     first+=1
                 }
-                
             })
+            
             // else go on until find one that is in props first
 
             // same logic for notRead[1,2,3]
@@ -50,9 +61,11 @@ function Assignment(props){
                     updateDoc(order, {
                         served: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        servedPhones: arrayUnion(props.second.find((notServedPerson) => {return notServedPerson.name === person}).phoneNumber)
+                    });
                     second+=1
                 }
-                
             })
 
             props.orderList[0].notServed.forEach((person) => {
@@ -63,9 +76,11 @@ function Assignment(props){
                     updateDoc(order, {
                         served: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        servedPhones: arrayUnion(props.third.find((notServedPerson) => {return notServedPerson.name === person}).phoneNumber)
+                    });
                     third+=1
-                }
-                
+                }                
             })
 
             props.orderList[0].notServed.forEach((person) => {
@@ -76,9 +91,11 @@ function Assignment(props){
                     updateDoc(order, {
                         served: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        servedPhones: arrayUnion(props.fourth.find((notServedPerson) => {return notServedPerson.name === person}).phoneNumber)
+                    });
                     fourth+=1
                 }
-                
             })
 
             props.resetAltar()
@@ -92,6 +109,12 @@ function Assignment(props){
                     read: arrayRemove(person)
                 });
             })
+
+            props.orderList[0].readPhones.forEach((phone) => {
+                updateDoc(order, {
+                    readPhones: arrayRemove(phone)
+                });
+            })
             // if notRead[0] is in in props first put his name, remove it from the notRead 
             
             props.orderList[0].notRead.forEach((person) => {
@@ -102,9 +125,11 @@ function Assignment(props){
                     updateDoc(order, {
                         read: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        readPhones: arrayUnion(props.first.find((notReadPerson) => {return notReadPerson.name === person}).phoneNumber)
+                    });
                     first+=1
                 }
-                
             })
             // else go on until find one that is in props first
 
@@ -118,9 +143,11 @@ function Assignment(props){
                     updateDoc(order, {
                         read: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        readPhones: arrayUnion(props.second.find((notReadPerson) => {return notReadPerson.name === person}).phoneNumber)
+                    });
                     second+=1
-                }
-                
+                }  
             })
 
             props.orderList[0].notRead.forEach((person) => {
@@ -131,9 +158,11 @@ function Assignment(props){
                     updateDoc(order, {
                         read: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        readPhones: arrayUnion(props.third.find((notReadPerson) => {return notReadPerson.name === person}).phoneNumber)
+                    });
                     third+=1
-                }
-                
+                }                
             })
 
             props.orderList[0].notRead.forEach((person) => {
@@ -144,9 +173,11 @@ function Assignment(props){
                     updateDoc(order, {
                         read: arrayUnion(person)
                     });
+                    updateDoc(order, {
+                        readPhones: arrayUnion(props.fourth.find((notReadPerson) => {return notReadPerson.name === person}).phoneNumber)
+                    });
                     fourth+=1
                 }
-                
             })
 
             props.resetReading()
@@ -157,11 +188,13 @@ function Assignment(props){
     const findPerson = (index) =>{
 
         if (props.name === "Altar"){
-             return props.served[0] ? props.served[0][index]: null
+             return props.served[0] && props.user.email === process.env.REACT_APP_ADMIN_EMAIL ? props.served[0][index] + ": " +  props.servedPhones[0][index]: props.served[0] ? props.served[0][index]:null
         }
 
         if (props.name === "Readings"){
-             return props.read[0] ? props.read[0][index]: null
+            // Undo this when have enough users
+            //return props.read[0] && props.user.email === process.env.REACT_APP_ADMIN_EMAIL ? readings[index] + " → " + props.read[0][index] + ": \n" +  props.readPhones[0][index]: props.read[0] || props.read[0]? readings[index] + " → " + props.read[0][index]:null
+            return readings[index] + " → TBA" 
         }
     }
 
@@ -170,10 +203,12 @@ function Assignment(props){
         <Col sml={8.5} className="main-boxes">
             {props.user.email === process.env.REACT_APP_ADMIN_EMAIL? <Button onClick={() => reset(props.name)} class="btn btn-primary" type="button">Assign {props.name}</Button>: <h1>{props.name}</h1>}
             <ul>
-                <li className="main-list">{findPerson(0)}</li>
-                <li className="main-list">{findPerson(1)}</li>
-                <li className="main-list">{findPerson(2)}</li>
-                <li className="main-list">{findPerson(3)}</li>
+                <ol>
+                    <li className="main-list">{findPerson(0)}</li>
+                    <li className="main-list">{findPerson(1)}</li>
+                    <li className="main-list">{findPerson(2)}</li>
+                    <li className="main-list">{findPerson(3)}</li>
+                </ol>
             </ul>
         </Col> 
     )

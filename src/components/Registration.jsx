@@ -48,7 +48,7 @@ function Register(props){
              window.location.pathname = ('/schedule')
          }
         catch(error){
-           setError("* Please enter valid email address!")
+           setError("* Please enter a valid email address!")
          }
       }
 
