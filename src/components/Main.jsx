@@ -19,15 +19,24 @@ function Main(props){
     const [AASundaySchool, setAASundaySchool] = useState([])
     const [youths, setYouths] = useState([])
     const [adults, setAdults] = useState([])
+    const [responsables, setResponsables] = useState([])
 
     const [read, setRead] = useState([])
     const [served, setServed] = useState([])
     const [readPhones, setReadPhones] = useState([])
     const [servedPhones, setServedPhones] = useState([])
+    const [age, setAge] = useState("")
 
    useEffect(() => {
 
     // Using the data:
+   
+      
+      props.userList.forEach((user) => {
+          if (user.email === props.user.email){
+              setAge(user.age)
+          }
+      })
   
       setPaulineList(props.userList.filter( (doc) => {
         return doc.Pauline === true
@@ -46,15 +55,19 @@ function Main(props){
       }))
       
       setAASundaySchool(props.userList.filter( (doc) => {
-        return doc.age === "AASundaySchool" && doc.Altar === true
+        return doc.age === "Elementary" && doc.Altar === true
       }))
 
       setYouths(props.userList.filter( (doc) => {
-        return doc.age === "Youth" && doc.Altar === true
+        return doc.age === "High School" && doc.Altar === true
       }))
 
       setAdults(props.userList.filter( (doc) => {
         return doc.age === "Adult" && doc.Altar === true
+      }))
+
+      setResponsables(props.userList.filter( (doc) => {
+        return doc.age === "Responsable" && doc.Altar === true
       }))
 
       setRead(props.orderList.map((doc) => {
@@ -96,25 +109,25 @@ function Main(props){
       });
     })
 
-    props.userList.forEach(user => {
-        if (!props.orderList[0].notServed.find((notServedPerson) => {return notServedPerson === user}))
-         updateDoc(order, {
-            notServed: arrayUnion(user.name)
-        });
-    }); 
+    // props.userList.forEach(user => {
+    //     if (!props.orderList[0].notServed.find((notServedPerson) => {return notServedPerson === user}))
+    //      updateDoc(order, {
+    //         notServed: arrayUnion(user.name)
+    //     });
+    // }); 
   }
 
   return(
-      <Container className="text-center">
+      <Container>
           <Row className="main-row">
             <Col>
-              <Assignment name = "Altar" first={adults} second={youths} third={AASundaySchool} fourth={AASundaySchool} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetAltar={resetAltar} readPhones={readPhones} servedPhones={servedPhones}/>
-              {props.user.email === process.env.REACT_APP_ADMIN_EMAIL?<Button onClick={()=>resetAltar()} class="btn btn-primary" type="button">Reset Altar</Button>:null}
+              <Assignment name = "Altar" first={responsables} second={adults} third={youths} fourth={AASundaySchool} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetAltar={resetAltar} readPhones={readPhones} servedPhones={servedPhones} age={age}/>
+              {/* {props.user.email === process.env.REACT_APP_ADMIN_EMAIL?<Button onClick={()=>resetAltar()} class="btn btn-primary" type="button">Reset Altar</Button>:null} */}
             </Col>
-            <Col>
+            {/* <Col>
               <Assignment name = "Readings" first={paulineList} second={catholicList} third={actsList} fourth={gospelList} user = {props.user} orderList = {props.orderList} read = {read} served = {served} resetReading={resetReadings} readPhones={readPhones} servedPhones={servedPhones}/>
               {props.user.email === process.env.REACT_APP_ADMIN_EMAIL?<Button onClick={()=>resetReadings()} class="btn btn-primary" type="button">Reset Readings</Button>:null}
-            </Col>
+            </Col> */}
           </Row>
       </Container>
   )

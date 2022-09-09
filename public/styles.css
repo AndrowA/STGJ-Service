@@ -1,5 +1,9 @@
 /* Navbar*/
 
+#root{
+    font-family: 'EB Garamond';
+}
+
 .navbar button{
     background-color: transparent;
     border: 0ch;
@@ -11,15 +15,49 @@ a:hover{
 
 /* Login Page */
 
+.login-title{
+    max-width: 750px;
+    font-weight: bold;
+    font-size: 40px;
+    margin: auto;
+    padding: 0;
+}
+
+.login-right-compartment{
+   padding-top: 75px;
+}
+
+.login-left-compartment{
+    padding-top: 15px;
+ }
+
+.assignement-top-compartment{
+    padding-bottom: 15px;
+}
+
+.assignement-table{
+    margin-bottom: 50px;
+    padding: 10px;
+    font-size: 50px;
+}
+
+ .assignement-button{
+    text-align: right;
+ }
+
+ .assignment-table-title{
+    text-align: left;
+ }
+
 .login-image{
-    height: 200px;
-    width: 300px;
-    padding-bottom: 30px;
+    height: 500px;
+    width: 500px;
+    object-fit: contain;
 }
 
 .login-card{
-    margin: 5% 25%;
-    padding: 20px;
+    padding: 10% 0 0 0;
+    height: 92%;
     border: 50%;
 }
 
@@ -49,13 +87,31 @@ a:hover{
 
 /* Registration Page */
 
+.registration-title{
+    max-width: 750px;
+    font-weight: bold;
+    font-size: 40px;
+    margin: auto;
+    padding: 0;
+}
+
+.registration-card{
+    padding: 10% 0 0 0;
+    height: 90%;
+    border: 50%;
+}
+ 
+ .registration-left-compartment{
+     padding-top: 40px;
+  }
+
 .registration{
     text-align: center;
 }
 
 /* Main Page */
 .main-row{
-    padding: 15% 0;
+    padding: 10% 0 0 0;
 }
 
 .main-list{
@@ -109,4 +165,12 @@ a:hover{
 .btn:focus {
 outline: none;
 box-shadow: none;
+}
+
+@media screen and (max-width: 700px){
+    .login-image{
+        width: 80vw;
+        object-fit: contain;
+    }
+    
 }

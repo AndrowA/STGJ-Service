@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import {Link} from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {auth} from "../firebaseConfig"
@@ -53,8 +56,15 @@ function Register(props){
       }
 
     return(
-        
-        <div className="registration">
+        <Container className="text-center registration-card">
+        <h1 className='registration-title'>Archangel Michael Deaconship Service</h1>
+        <Row>
+            <Col className='registration-left-compartment'>
+                
+                <img className="login-image" src="https://archangelmichaeloc.org/wp-content/uploads/2018/04/15259788_1365204300164729_5431437382166434887_o-copy.png" alt="" />
+            </Col>
+            <Col className="registration-right-compartment">
+            <div className="registration">
             <div className="login-card">
             <Form className="text-center">
                 <h1>Register</h1>
@@ -72,9 +82,10 @@ function Register(props){
                     <div className="login-input">
                     <Form.Select  type="name" placeholder="Age" value={age} onChange={(e) => {setAge(e.target.value)}}>
                         <option value="">Select your age group</option>
-                        <option value="AASundaySchool">AASundaySchool</option>
-                        <option value="Youth">Youth</option>
+                        <option value="Elementary">Elementary</option>
+                        <option value="High School">High School</option>
                         <option value="Adult">Adult</option>
+                        <option value="Responsable">Responsable</option>
                     </Form.Select>
                     </div>
                     <div className="login-input">
@@ -104,6 +115,11 @@ function Register(props){
             </Form>
         </div>
         </div>
+            </Col>
+        </Row>
+            
+        </Container>
+        
 
     )
 }

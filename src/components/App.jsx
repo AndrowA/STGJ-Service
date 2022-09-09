@@ -82,7 +82,7 @@ function App() {
         <Route path="/login" element={<Login signIn={signIn} error={error}/>}/>
         <Route element={<ProtectedRoute loggedIn= {loggedIn} signIn={signIn} error={error}/>}>
           <Route path="/schedule" element={<Main user = {user} userList={userList} orderList={orderList}/>}/>
-          <Route path="/registration" element={<Availability userList= {userList} user= {user} />}/> 
+          {/* <Route path="/registration" element={<Availability userList= {userList} user= {user} />}/>  */}
           <Route path="/" element={<Main user = {user} userList={userList} orderList={orderList}/>}/>
         </Route>
         <Route path="/register" element={<Register error={error}/>}/>
